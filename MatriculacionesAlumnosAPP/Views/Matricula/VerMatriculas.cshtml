@@ -1,0 +1,35 @@
+﻿@using MatriculacionesAlumnosAPP.ViewModels
+@model List<AlumnosMatriculasViewModel>
+@{
+    ViewBag.Title = "VerMatriculas";
+}
+
+<h2>Ver Matriculas</h2>
+<br />
+@Html.ActionLink("Nueva Matrícula", "CrearMatricula", "Matricula", null, new { @class = "btn btn-success" })
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>Edad</th>
+            <th>Matricula</th>
+            <th>Creditos</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AlumnosMatriculasViewModel Matricula in Model)
+        {
+            <tr>
+                <td>@Matricula.NombreAlumno</td>
+                <td>@Matricula.EdadAlumno</td>
+                <td>@Matricula.NombreAsignatura</td>
+                <td>@Matricula.CreditosAsignatura</td>
+                <td>@Html.ActionLink("Eliminar", "EliminarMatricula", "Matricula", new { id = Matricula.MatriculaID }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/sweetalert2")

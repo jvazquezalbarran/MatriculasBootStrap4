@@ -1,0 +1,38 @@
+﻿@using MatriculacionesAlumnosAPP.ViewModels
+@model MatriculasAlumnosViewModel
+
+@{
+    ViewBag.Title = "CrearMatricula";
+}
+
+@using (Html.BeginForm("CrearMatricula","Matricula",FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-7 offset-2">
+            <div class="form-group">
+                <label for="ddlAlumno">Alumno</label>
+                @Html.DropDownListFor(m => m.AlumnoSeleccionado,
+                    new SelectList(Model.Alumnos, "AlumnoID", "nombreAlumno"), "- Selecciona -", 
+                    new { @id="ddlAlumno" ,@class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="ddlAsignatura">Asignatura</label>
+                @Html.DropDownListFor(m => m.AsignaturaSeleccionada,
+                    new SelectList(Model.Asignaturas, "AsignaturaID", "nombreAsignatura"), "- Selecciona -", 
+                    new { @id="ddlAsignatura", @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="txtFecha">Fecha Matricula</label>
+                <input type="date" id="txtFecha" value="@Model.FechaMatricula" class="form-control" />
+                
+            </div>
+            <div class="text-center">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-success">Crear</button>
+                    @Html.ActionLink("Cancelar", "VerMatriculas", "Matricula", null, new { @class = "btn btn-outline-warning" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
